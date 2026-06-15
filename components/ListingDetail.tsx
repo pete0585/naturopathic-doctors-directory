@@ -2,15 +2,17 @@ import Link from 'next/link'
 import { MapPin, Phone, Globe, Mail, CheckCircle, Leaf, Wifi, Shield, Star } from 'lucide-react'
 import type { Listing } from '@/lib/types'
 import { SPECIALTIES, TREATMENT_MODALITIES, STATE_NAMES, formatPhone } from '@/lib/utils'
+import { ViewTracker } from './ViewTracker'
 
 interface ListingDetailProps {
   listing: Listing
+  monthlyViews: number
 }
 
-export default function ListingDetail({ listing }: ListingDetailProps) {
+export default function ListingDetail({ listing, monthlyViews }: ListingDetailProps) {
   const isFeatured = listing.listing_tier === 'featured'
   const isVerified = listing.listing_tier === 'verified' || isFeatured
-  const isClaimed = !!listing.claimed_at
+  const isClaimed = listing.listing_tier !== 'unclaimed' && listing.listing_tier != null
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -33,6 +35,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <ViewTracker listingId={String(listing.id)} directorySlug='naturopathic-doctors' />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -132,7 +135,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
           </div>
 
           {/* Bio */}
-          {listing.bio && (
+          {isClaimed && listing.bio && (
             <div className="bg-white rounded-xl border border-surface-border shadow-sm p-6">
               <h2 className="font-bold text-gray-900 mb-3">About {listing.full_name}</h2>
               <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{listing.bio}</p>
@@ -191,48 +194,75 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
 
         {/* Sidebar */}
         <div className="space-y-4">
+          {isClaimed && (
+            <div className='rounded-xl border border-blue-200 bg-blue-50 p-4'>
+              <p className='text-xs font-semibold uppercase tracking-wide text-blue-600'>Profile Activity</p>
+              <p className='mt-1 text-3xl font-bold text-blue-900'>{monthlyViews}</p>
+              <p className='text-sm text-blue-700'>people viewed your profile this month</p>
+              {listing.listing_tier === 'free' && (
+                <p className='mt-2 text-xs text-blue-600'>
+                  0 could contact you.{' '}
+                  <a href={`/claim/${listing.id}?upgrade=true`} className='underline font-medium'>
+                    Upgrade to be reachable →
+                  </a>
+                </p>
+              )}
+            </div>
+          )}
+
           {/* Contact */}
           <div className="bg-white rounded-xl border border-surface-border shadow-sm p-5 sticky top-6">
             <h2 className="font-bold text-gray-900 mb-4">Contact</h2>
 
-            <div className="space-y-3">
-              {listing.phone && (
-                <a
-                  href={`tel:${listing.phone}`}
-                  className="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-brand-primary/5 transition-colors group"
-                >
-                  <Phone className="w-5 h-5 text-brand-primary shrink-0" aria-label="Phone" />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-brand-primary">{formatPhone(listing.phone)}</span>
-                </a>
-              )}
+            {isClaimed ? (
+              <div className="space-y-3">
+                {listing.phone && (
+                  <a
+                    href={`tel:${listing.phone}`}
+                    className="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-brand-primary/5 transition-colors group"
+                  >
+                    <Phone className="w-5 h-5 text-brand-primary shrink-0" aria-label="Phone" />
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-brand-primary">{formatPhone(listing.phone)}</span>
+                  </a>
+                )}
 
-              {listing.website && (
-                <a
-                  href={listing.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-brand-primary/5 transition-colors group"
-                >
-                  <Globe className="w-5 h-5 text-brand-primary shrink-0" aria-label="Website" />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-brand-primary">Visit Website</span>
-                </a>
-              )}
+                {listing.website && (
+                  <a
+                    href={listing.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-brand-primary/5 transition-colors group"
+                  >
+                    <Globe className="w-5 h-5 text-brand-primary shrink-0" aria-label="Website" />
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-brand-primary">Visit Website</span>
+                  </a>
+                )}
 
-              {isVerified && listing.email && (
-                <a
-                  href={`mailto:${listing.email}`}
-                  className="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-brand-primary/5 transition-colors group"
-                >
-                  <Mail className="w-5 h-5 text-brand-primary shrink-0" aria-label="Email" />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-brand-primary">Send Email</span>
-                </a>
-              )}
-            </div>
+                {isVerified && listing.email && (
+                  <a
+                    href={`mailto:${listing.email}`}
+                    className="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-brand-primary/5 transition-colors group"
+                  >
+                    <Mail className="w-5 h-5 text-brand-primary shrink-0" aria-label="Email" />
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-brand-primary">Send Email</span>
+                  </a>
+                )}
 
-            {listing.accepts_insurance && (
-              <div className="mt-4 flex items-center gap-2 text-sm text-green-700 bg-green-50 rounded-lg px-3 py-2">
-                <CheckCircle className="w-4 h-4 shrink-0" aria-label="Insurance" />
-                Accepts Insurance
+                {listing.accepts_insurance && (
+                  <div className="mt-4 flex items-center gap-2 text-sm text-green-700 bg-green-50 rounded-lg px-3 py-2">
+                    <CheckCircle className="w-4 h-4 shrink-0" aria-label="Insurance" />
+                    Accepts Insurance
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className='rounded-lg border border-gray-200 bg-gray-50 p-4 text-center'>
+                <p className='text-sm text-gray-500'>
+                  Phone, website, and bio are only visible after this provider claims their listing.
+                </p>
+                <a href={`/claim/${listing.id}`} className='mt-2 inline-block text-sm font-medium text-blue-600 hover:underline'>
+                  Is this you? Claim your free profile →
+                </a>
               </div>
             )}
 
