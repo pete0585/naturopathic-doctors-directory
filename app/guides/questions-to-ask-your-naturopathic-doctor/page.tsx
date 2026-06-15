@@ -102,7 +102,7 @@ export default function QuestionsToAskNDPage() {
             <p className="text-gray-600 mt-1">A good answer is specific and goes beyond basic bloodwork. For hormonal issues, expect thyroid panels, sex hormones, cortisol curves. For gut issues, expect stool analysis, SIBO testing, or organic acids. Vague answers are a yellow flag.</p>
           </li>
           <li className="bg-white border border-gray-100 rounded-lg p-4">
-            <p className="font-semibold text="gray-900">7. What does a typical treatment plan look like for your patients?</p>
+            <p className="font-semibold text-gray-900">7. What does a typical treatment plan look like for your patients?</p>
             <p className="text-gray-600 mt-1">Look for plans that evolve based on lab results and your response — not a fixed supplement protocol handed to every patient with similar symptoms.</p>
           </li>
           <li className="bg-white border border-gray-100 rounded-lg p-4">
