@@ -32,7 +32,7 @@ const FAQ = [
 ]
 
 export default async function BestSanFranciscoNDPage() {
-  const listings = await getListingsByCity('San Francisco', 'California', 9).catch(() => [])
+  const listings = await getListingsByCity('San Francisco', 'California').catch(() => [])
 
   const jsonLd = {
     '@context': 'https://schema.org',
