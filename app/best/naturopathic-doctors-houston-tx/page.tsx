@@ -32,7 +32,7 @@ const FAQ = [
 ]
 
 export default async function BestHoustonNDPage() {
-  const listings = await getListingsByCity('Houston', 'Texas', 6).catch(() => [])
+  const listings = await getListingsByCity('Houston', 'Texas').catch(() => [])
 
   const jsonLd = {
     '@context': 'https://schema.org',
