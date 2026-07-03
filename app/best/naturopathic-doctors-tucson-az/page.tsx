@@ -32,7 +32,7 @@ const FAQ = [
 ]
 
 export default async function BestTucsonNDPage() {
-  const listings = await getListingsByCity('Tucson', 'Arizona', 9).catch(() => [])
+  const listings = await getListingsByCity('Tucson', 'Arizona').catch(() => [])
 
   const jsonLd = {
     '@context': 'https://schema.org',
