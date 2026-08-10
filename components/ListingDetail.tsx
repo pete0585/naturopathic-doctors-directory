@@ -12,7 +12,7 @@ interface ListingDetailProps {
 export default function ListingDetail({ listing, monthlyViews }: ListingDetailProps) {
   const isFeatured = listing.listing_tier === 'featured'
   const isVerified = listing.listing_tier === 'verified' || isFeatured
-  const isClaimed = listing.listing_tier !== 'free' && listing.listing_tier != null
+  const isClaimed = listing.listing_tier != null && listing.listing_tier !== 'free' && listing.listing_tier !== 'unclaimed'
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -27,8 +27,8 @@ export default function ListingDetail({ listing, monthlyViews }: ListingDetailPr
       postalCode: listing.zip ?? undefined,
       addressCountry: 'US',
     },
-    ...(listing.phone ? { telephone: listing.phone } : {}),
-    ...(listing.website ? { url: listing.website } : {}),
+    ...(isClaimed && listing.phone ? { telephone: listing.phone } : {}),
+    ...(isClaimed && listing.website ? { url: listing.website } : {}),
     ...(listing.photo_url ? { image: listing.photo_url } : {}),
     medicalSpecialty: listing.specialties.map((s) => SPECIALTIES[s] ?? s),
   }
