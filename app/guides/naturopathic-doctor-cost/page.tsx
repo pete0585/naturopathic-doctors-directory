@@ -24,7 +24,7 @@ const faqSchema = {
       name: 'Does insurance cover naturopathic doctor visits?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Coverage varies by state and plan. In licensing states (like Washington, Oregon, California, Arizona, Minnesota, and Connecticut), some insurance plans include ND visits — but this is the exception, not the rule. Many large commercial plans still exclude naturopathic care. Check your plan's Explanation of Benefits or call member services. If your ND is not covered, ask about a superbill for potential out-of-network reimbursement. HSA and FSA funds can be used for licensed ND visits.',
+        text: "Coverage varies by state and plan. In licensing states (like Washington, Oregon, California, Arizona, Minnesota, and Connecticut), some insurance plans include ND visits — but this is the exception, not the rule. Many large commercial plans still exclude naturopathic care. Check your plan's Explanation of Benefits or call member services. If your ND is not covered, ask about a superbill for potential out-of-network reimbursement. HSA and FSA funds can be used for licensed ND visits.",
       },
     },
     {
