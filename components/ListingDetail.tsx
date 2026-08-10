@@ -12,7 +12,7 @@ interface ListingDetailProps {
 export default function ListingDetail({ listing, monthlyViews }: ListingDetailProps) {
   const isFeatured = listing.listing_tier === 'featured'
   const isVerified = listing.listing_tier === 'verified' || isFeatured
-  const isClaimed = listing.listing_tier != null && listing.listing_tier !== 'free' && listing.listing_tier !== 'unclaimed'
+  const isClaimed = listing.listing_tier !== 'free' && listing.listing_tier != null
 
   const jsonLd = {
     '@context': 'https://schema.org',
