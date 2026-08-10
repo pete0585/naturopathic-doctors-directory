@@ -48,7 +48,7 @@ const faqSchema = {
       name: 'What should I bring to my first naturopathic appointment?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Bring: a complete list of all medications with dosages, all supplements with dosages (or the bottles), any recent lab results (print them if you have access — do not assume your ND has access to your conventional providers' records), a written list of your symptoms in priority order, and your questions. Also: insurance card if applicable, HSA/FSA card, and a sense of your health goals — not just what is wrong, but what you want to be able to do that your health is currently preventing.',
+        text: "Bring: a complete list of all medications with dosages, all supplements with dosages (or the bottles), any recent lab results (print them if you have access — do not assume your ND has access to your conventional providers' records), a written list of your symptoms in priority order, and your questions. Also: insurance card if applicable, HSA/FSA card, and a sense of your health goals — not just what is wrong, but what you want to be able to do that your health is currently preventing.",
       },
     },
   ],
