@@ -9,7 +9,7 @@ import { SPECIALTIES, TOP_ND_STATES, STATE_NAMES } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Find Licensed Naturopathic Doctors Near You | NaturopathicDoctorFinder.com',
-  description: 'Find a naturopathic doctor who treats the root cause. The only neutral directory covering all licensed NDs across 25 US jurisdictions — not just AANP members. Free to search.',
+  description: 'Find a naturopathic doctor who treats the root cause. The only neutral directory covering all licensed NDs across 25 US jurisdictions. Free to search.',
   alternates: { canonical: 'https://naturopathicdoctorfinder.com' },
 }
 
