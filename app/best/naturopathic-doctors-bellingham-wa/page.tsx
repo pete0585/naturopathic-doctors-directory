@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server"
 export const metadata: Metadata = {
   title: "Best Naturopathic Doctor in Bellingham, WA | Naturopathic Doctor Directory",
   description: "Find naturopathic doctor in Bellingham, Washington. 20+ listed. Filter by city and compare providers.",
+  alternates: { canonical: "https://naturopathicdoctorfinder.com/best/naturopathic-doctors-bellingham-wa" },
 }
 
 async function getListings() {

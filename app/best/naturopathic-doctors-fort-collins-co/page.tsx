@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server"
 export const metadata: Metadata = {
   title: "Best Naturopathic Doctor in Fort Collins, CO | Naturopathic Doctor Directory",
   description: "Find naturopathic doctor in Fort Collins, Colorado. 20+ listed. Filter by city and compare providers.",
+  alternates: { canonical: "https://naturopathicdoctorfinder.com/best/naturopathic-doctors-fort-collins-co" },
 }
 
 async function getListings() {
