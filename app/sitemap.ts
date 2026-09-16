@@ -1,3 +1,4 @@
+import {articles as editorialArticles} from '@/lib/editorial-blog'
 import { readdir } from 'fs/promises'
 import path from 'path'
 import type { MetadataRoute } from 'next'
@@ -15,7 +16,7 @@ async function getCityPageSlugs(): Promise<string[]> {
     .sort()
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+async function originalSitemap(): Promise<MetadataRoute.Sitemap> {
   const slugs = await getAllSlugs()
   const citySlugs = await getCityPageSlugs()
 
@@ -55,3 +56,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [...staticUrls, ...cityUrls, ...stateUrls, ...specialtyUrls, ...listingUrls]
 }
+
+export default async function editorialSitemap():Promise<MetadataRoute.Sitemap>{const existing=await originalSitemap();const site="https://naturopathicdoctorfinder.com";return [...existing,{url:site+'/blog',changeFrequency:'weekly'},...editorialArticles().map(p=>({url:site+'/blog/'+p.slug,lastModified:new Date(p.date),changeFrequency:'monthly' as const}))]}
