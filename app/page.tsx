@@ -65,13 +65,22 @@ export default function HomePage() {
               <span className="text-brand-cream text-sm font-semibold uppercase tracking-wider">Licensed NDs Only</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
-              Find a doctor who treats<br />
-              <span className="text-brand-cream">the root cause.</span>
-            </h1>
+            Find trusted naturopathic doctors near you
+          </h1>
             <p className="text-green-100 text-lg mb-8 leading-relaxed">
-              The only neutral directory covering all ~7,000 licensed Naturopathic Doctors across
-              25 US jurisdictions — not just AANP members. Free to search, always.
-            </p>
+            Browse all licensed naturopathic doctors by state and specialty — and connect directly. Free, always.
+          </p>
+          <p className="text-sm text-gray-500 mt-4">
+            Are you a naturopathic doctor?{' '}
+            <a
+              href="https://studiozerohq.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:opacity-80"
+            >
+              List your practice free →
+            </a>
+          </p>
 
             <Suspense fallback={null}>
               <SearchBar large className="max-w-2xl" />
