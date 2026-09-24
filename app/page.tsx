@@ -6,6 +6,7 @@ import SearchBar from '@/components/SearchBar'
 import ListingCard from '@/components/ListingCard'
 import { getFeaturedListings, getTotalCount } from '@/lib/data'
 import { SPECIALTIES, TOP_ND_STATES, STATE_NAMES } from '@/lib/utils'
+import NewsletterSignup from '@/components/NewsletterSignup'
 
 export const metadata: Metadata = {
   title: 'Find Licensed Naturopathic Doctors Near You | NaturopathicDoctorFinder.com',
