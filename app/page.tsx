@@ -113,10 +113,6 @@ export default function HomePage() {
               <span className="text-4xl sm:text-5xl font-bold text-brand-cream">25</span>
               <p className="text-green-200 text-sm mt-1">Licensed US Jurisdictions</p>
             </div>
-            <div className="text-center">
-              <span className="text-4xl sm:text-5xl font-bold text-brand-cream">$99</span>
-              <p className="text-green-200 text-sm mt-1">vs. $480/yr AANP listing</p>
-            </div>
           </div>
         </div>
       </section>
