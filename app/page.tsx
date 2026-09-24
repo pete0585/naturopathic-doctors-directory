@@ -253,7 +253,7 @@ export default function HomePage() {
             </div>
             <h2 className="text-2xl font-bold mb-2">Your profile may already be here.</h2>
             <p className="text-green-100 max-w-xl">
-              We seed from state licensing board rosters. Claim your profile for free — or upgrade to Verified ($99/yr) for photos, bio, specialty tags, and priority placement. That&apos;s 80% less than AANP&apos;s $480/yr bundle.
+              We seed from state licensing board rosters. Claim your profile for free.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
