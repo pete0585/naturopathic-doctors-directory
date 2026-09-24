@@ -1,25 +1,19 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import ListingCard from '@/components/ListingCard'
-import { getListingsByCity } from '@/lib/data'
-
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import ListingCard from '@/components/ListingCard';
+import { getListingsByCity } from '@/lib/data';
 export const metadata: Metadata = {
-  title: 'Best Naturopathic Doctors in Nashville, TN | Naturopathic Doctor Finder',
-  description:
-    'Find licensed naturopathic doctors in Nashville, Tennessee. Tennessee does not license NDs as physicians — understand your options and find qualified integrative practitioners.',
-  alternates: { canonical: 'https://naturopathicdoctorfinder.com/best/naturopathic-doctors-nashville-tn' },
-}
-
-export const revalidate = 3600
-
+    title: 'Best Naturopathic Doctors in Nashville, TN | Naturopathic Doctor Finder',
+    description: 'Find licensed naturopathic doctors in Nashville, Tennessee. Tennessee does not license NDs as physicians — understand your options and find qualified integrative practitioners.',
+    alternates: { canonical: 'https://naturopathicdoctorfinder.com/best/naturopathic-doctors-nashville-tn' },
+};
+export const revalidate = 3600;
 export default async function BestNDsNashville() {
-  const listings = await getListingsByCity('Nashville', 'TN')
-  const featured = listings.filter((l) => l.listing_tier === 'featured')
-  const verified = listings.filter((l) => l.listing_tier === 'verified')
-  const top = [...featured, ...verified, ...listings.filter((l) => l.listing_tier === 'free')].slice(0, 10)
-
-  return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    const listings = await getListingsByCity('Nashville', 'TN');
+    const featured = listings.filter((l) => l.listing_tier === 'featured');
+    const verified = listings.filter((l) => l.listing_tier === 'verified');
+    const top = [...featured, ...verified, ...listings.filter((l) => l.listing_tier === 'free')].slice(0, 10);
+    return (<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
         <Link href="/" className="hover:text-brand-primary">Home</Link>
@@ -60,23 +54,19 @@ export default async function BestNDsNashville() {
         </p>
       </div>
 
-      {top.length > 0 ? (
-        <>
+      {top.length > 0 ? (<>
           <div className="mb-4 text-sm text-gray-600">
             Showing <strong className="text-gray-900">{top.length}</strong> naturopathic practitioners in Nashville, TN — verify credentials and scope before booking
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-            {top.map((l) => <ListingCard key={l.id} listing={l} />)}
+            {top.map((l) => <ListingCard key={l.id} listing={l}/>)}
           </div>
-        </>
-      ) : (
-        <div className="text-center py-12 mb-10">
+        </>) : (<div className="text-center py-12 mb-10">
           <p className="text-gray-500 mb-4">Browse all practitioners or search by state.</p>
           <Link href="/listings" className="bg-brand-primary text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-brand-primary-dark transition-colors">
             Browse All NDs
           </Link>
-        </div>
-      )}
+        </div>)}
 
       <div className="text-center mb-12">
         <Link href="/listings" className="text-brand-primary font-medium hover:underline">
@@ -127,24 +117,15 @@ export default async function BestNDsNashville() {
       {/* CTA */}
       <div className="mt-8 bg-brand-primary/5 border border-brand-primary/20 rounded-xl p-6 text-center">
         <h2 className="text-xl font-bold text-gray-900 mb-2">Are You a Licensed ND Serving Nashville Patients?</h2>
-        <p className="text-gray-600 mb-4">
-          Telehealth NDs from licensed states serving Tennessee patients — claim your free listing or upgrade to reach more patients.
-        </p>
+        <p className="text-gray-600 mb-4"> Claim and manage your free listing. </p>
         <div className="flex gap-3 justify-center flex-wrap">
-          <Link
-            href="/listings"
-            className="bg-brand-primary text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-brand-primary-dark transition-colors"
-          >
+          <Link href="/listings" className="bg-brand-primary text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-brand-primary-dark transition-colors">
             Find Your Listing
           </Link>
-          <Link
-            href="/submit"
-            className="bg-white border border-brand-primary text-brand-primary font-semibold px-5 py-2.5 rounded-lg hover:bg-brand-primary/5 transition-colors"
-          >
+          <Link href="/submit" className="bg-white border border-brand-primary text-brand-primary font-semibold px-5 py-2.5 rounded-lg hover:bg-brand-primary/5 transition-colors">
             Submit Your Practice
           </Link>
         </div>
       </div>
-    </div>
-  )
+    </div>);
 }
