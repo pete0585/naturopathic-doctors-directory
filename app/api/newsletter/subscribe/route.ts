@@ -7,7 +7,7 @@ const NICHE = 'naturopathic' as const
 const DIRECTORY_SLUG = 'naturopathic-doctors-directory' as const
 const NEWSLETTER_NAME = 'The Nature & Evidence Letter' as const
 const CONFIRM_URL_BASE = 'https://www.naturopathicdoctorfinder.com/newsletter/confirm'
-const DASHBOARD_URL = 'https://aidam.thestrategicveteran.com'
+const DASHBOARD_URL = 'https://aidam.studiozerohq.com'
 
 export async function POST(req: NextRequest) {
   let email: string, first_name: string | undefined
