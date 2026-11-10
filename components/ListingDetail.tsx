@@ -151,7 +151,7 @@ export default function ListingDetail({ listing, monthlyViews }: ListingDetailPr
                     <span className="text-sm font-medium text-gray-700 group-hover:text-brand-primary">{formatPhone(listing.phone)}</span>
                   </a>)}
 
-                {listing.website && (<a href={listing.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-brand-primary/5 transition-colors group">
+                {listing.website && (<a data-directory-action="website_click" href={listing.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-brand-primary/5 transition-colors group">
                     <Globe className="w-5 h-5 text-brand-primary shrink-0" aria-label="Website"/>
                     <span className="text-sm font-medium text-gray-700 group-hover:text-brand-primary">Visit Website</span>
                   </a>)}
