@@ -51,17 +51,19 @@ export default function SubmitForm() {
     }
     async function onSubmit(data: FormData) {
         setError('');
-        const res = await fetch('/api/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-        const json = await res.json();
-        if (!res.ok) {
-            setError(json.error ?? 'Submission failed. Please try again.');
-            return;
+        try {
+            const res = await fetch('/api/submit', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
+            });
+            const json = await res.json();
+            if (!res.ok || json.success !== true || json.status !== 'pending_review') {
+                setError(json.error ?? 'We could not confirm your submission. Your entries are still here.');
+                return;
+            }
+            setSubmitted(true);
+        } catch {
+            setError('We could not confirm your submission. Your entries are still here. Retry the same submission.');
         }
-        setSubmitted(true);
     }
     if (submitted) {
         return (<div className="max-w-lg mx-auto px-4 py-20 text-center">
@@ -70,7 +72,7 @@ export default function SubmitForm() {
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Listing Submitted!</h2>
         <p className="text-gray-600">
-          Your listing has been submitted and will appear in the directory shortly. Check your email for a verification link to claim your full profile.
+          Your submission is saved for review. It is not public yet. No email has been sent.
         </p>
       </div>);
     }
